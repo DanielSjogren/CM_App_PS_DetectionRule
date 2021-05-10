@@ -19,7 +19,9 @@ If ($ProcessBit -eq "32-bit") {
 
 $ApplicationToSearchFor  = $InstalledApplications | Where {$_.DisplayName -eq 'TeamViewer Host'}
 If ($ApplicationToSearchFor)  {
-    If ([version]::Parse($ApplicationToSearchFor.DisplayVersion) -ge [version]::Parse('15.17.7.0') ) {
-        Write-Host "Installed"
+    ForEach ($App in $ApplicationToSearchFor) {
+        If ([version]::Parse($App.DisplayVersion) -ge [version]::Parse('15.17.7.0') ) {
+            Write-Host "Installed"
+        }
     }
 }
